@@ -4844,3 +4844,75 @@ var data = {
       }
    ]
 }
+
+function addMembersTable() {
+    
+    // creates a table element and a tbody element
+    var tbl = document.getElementById('senate-data');
+    var tblBody = document.createElement('tbody');
+    
+    // for each member, build a TR element
+    for (i = 0; i < data.results[0].members.length; i++) {
+        var row = document.createElement('tr');
+        
+        // if first_name found, build a TD element
+        if (data.results[0].members[i].first_name) {
+            var cell = document.createElement('td');
+            // create text node containing first_name value + middle_name + last_name
+            var cellText = document.createTextNode(data.results[0].members[i].first_name + ' ' + (data.results[0].members[i].middle_name || "") + ' ' + data.results[0].members[i].last_name);
+            // add cell text node to cell
+            cell.appendChild(cellText);
+            // add cell to row
+            row.appendChild(cell);
+        } 
+        
+        if (data.results[0].members[i].party) {
+            var cell = document.createElement('td');
+            var cellText = document.createTextNode(data.results[0].members[i].party);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        }
+        
+        if (data.results[0].members[i].state) {
+        var cell = document.createElement('td');
+        var cellText = document.createTextNode(data.results[0].members[i].state);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+        }
+        
+        if (data.results[0].members[i].seniority) {
+        var cell = document.createElement('td');
+        var cellText = document.createTextNode(data.results[0].members[i].seniority);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+        }
+        
+        if (data.results[0].members[i].votes_with_party_pct) {
+        var cell = document.createElement('td');
+        var cellText = document.createTextNode(data.results[0].members[i].votes_with_party_pct + ' %');
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+        }  
+        
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+    }
+    
+    // put the tbody in the table
+    tbl.appendChild(tblBody);
+    // sets the border attribute of tbl to 2;
+    tbl.setAttribute('border', '2');
+    
+}
+
+addMembersTable();
+
+
+
+
+
+
+
+
+
+
