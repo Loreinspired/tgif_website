@@ -20714,3 +20714,95 @@ var data = {
       }
    ]
 }
+
+function createCell(text, row) {
+
+    var cell = document.createElement('td');
+    var cellText = document.createTextNode(text);
+    cell.appendChild(cellText);
+    row.appendChild(cell); 
+}
+
+function createHeader(headerTitles, tbl) {
+    
+    var tblHeader = document.getElementById('house-table-head');
+    var headerRow = document.createElement('tr');
+
+    for (var j = 0; j < headerTitles.length; j++) {
+        var newTitle = document.createElement('th');
+        newTitle.innerHTML = headerTitles[j];
+        headerRow.appendChild(newTitle);
+    }
+    
+    // add header row to table header
+    tblHeader.appendChild(headerRow);
+
+    // put the header in the table
+    tbl.appendChild(tblHeader);
+} 
+
+function addMembersTable() {
+    
+    var headerTitles = ['Name', 'Party', 'State', 'Years in Office', '% Votes w/ Party'];
+
+    // creates a table element and a tbody element
+    var tbl = document.getElementById('house-data');
+    var tblBody = document.getElementById('house-table-body');
+   
+    createHeader(headerTitles, tbl);
+    
+    // for each member, build a TR element
+    for (var i = 0; i < data.results[0].members.length; i++) {
+        var row = tbl.insertRow();
+        var congressMember = data.results[0].members[i];
+
+        var fullName = data.results[0].members[i].first_name + ' ' + (data.results[0].members[i].middle_name || "") + ' ' + data.results[0].members[i].last_name;
+        
+        createCell(fullName, row);
+        createCell(data.results[0].members[i].party || "", row);
+        createCell(data.results[0].members[i].state || "", row);
+        createCell(data.results[0].members[i].seniority || "", row);
+        createCell(data.results[0].members[i].votes_with_party_pct + ' %' || "", row);
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+    }
+
+    // put the tbody in the table
+    tbl.appendChild(tblBody);
+}
+
+addMembersTable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
