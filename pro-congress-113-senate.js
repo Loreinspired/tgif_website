@@ -4850,13 +4850,12 @@ function createCell(text, row) {
     var cell = document.createElement('td');
     var cellText = document.createTextNode(text);
     cell.appendChild(cellText);
-    row.appendChild(cell);
-    
+    row.appendChild(cell); 
 }
 
 function createHeader(headerTitles, tbl) {
     
-    var tblHeader = document.createElement('thead');
+    var tblHeader = document.getElementById('senate-table-head');
     var headerRow = document.createElement('tr');
 
     for (var j = 0; j < headerTitles.length; j++) {
@@ -4870,18 +4869,15 @@ function createHeader(headerTitles, tbl) {
 
     // put the header in the table
     tbl.appendChild(tblHeader);
-
 } 
 
 function addMembersTable() {
     
-    var headerTitles = ['Name', 'Party', 'State', 'Seniority', 'Percentage of votes with party'];
+    var headerTitles = ['Name', 'Party', 'State', 'Years in Office', '% Votes w/ Party'];
 
     // creates a table element and a tbody element
     var tbl = document.getElementById('senate-data');
-    var tblBody = document.createElement('tbody');
-
-    // creates a table header element and a row element
+    var tblBody = document.getElementById('senate-table-body');
    
     createHeader(headerTitles, tbl);
     
@@ -4893,13 +4889,9 @@ function addMembersTable() {
         var fullName = data.results[0].members[i].first_name + ' ' + (data.results[0].members[i].middle_name || "") + ' ' + data.results[0].members[i].last_name;
         
         createCell(fullName, row);
-
         createCell(data.results[0].members[i].party || "", row);
-        
         createCell(data.results[0].members[i].state || "", row);
-        
         createCell(data.results[0].members[i].seniority || "", row);
-
         createCell(data.results[0].members[i].votes_with_party_pct + ' %' || "", row);
 
         // add the row to the end of the table body
@@ -4908,19 +4900,6 @@ function addMembersTable() {
 
     // put the tbody in the table
     tbl.appendChild(tblBody);
-
-    // sets the border attribute of tbl to 2;
-    tbl.setAttribute('border', '2');
-
 }
 
 addMembersTable();
-
-
-
-//        if (data.results[0].members[i].party) {
-//            var partyCell = document.createElement('td');
-//            var partyCellText = document.createTextNode(data.results[0].members[i].party);
-//            partyCell.appendChild(partyCellText);
-//            row.appendChild(partyCell);
-//        }
