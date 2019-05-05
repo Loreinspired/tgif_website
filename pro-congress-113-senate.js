@@ -4845,43 +4845,49 @@ var data = {
    ]
 }
 
-function applyPartyFilter() {
+function applyPartyandStateFilters() {
     
     var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
+    var selectedState = document.getElementById('state-filter').value;
+    console.log(selectedState);
+
     var membersToDisplay = [];
     
     if (selectedParties.length === 0) {
         membersToDisplay = data.results[0].members;
     } else {
-        membersToDisplay = getMembersFromSelectedParties(selectedParties);
+        membersToDisplay = getMembersFromMultipleSelectedParties(selectedParties);
     }
     
+    if (selectedState != "") {
+        membersToDisplay = getMembersForASingleState(selectedState, membersToDisplay);
+    }
+
     clearTableBody();
     
     var tbl = document.getElementById('senate-data');
     addMembersToTable(membersToDisplay, tbl);
 }
 
-function getMembersFromSelectedParties(selectedParties) {
+function getMembersFromMultipleSelectedParties(selectedParties) {
     
     var membersFromSelectedParties = [];
 
     for (var i = 0; i < selectedParties.length; i++) {
         var selectedParty = selectedParties[i].value;
-        var partyMembers = getMembersForParty(selectedParty);
+        var partyMembers = getMembersForASingleParty(selectedParty);
         Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
     }
     
     return membersFromSelectedParties;
 }
 
-function getMembersForParty(partyIndicator) {
+function getMembersForASingleParty(partyIndicator) {
     
     var allMembers = data.results[0].members;
     var matchedPartyMembers = [];
 
     for (var i = 0; i < allMembers.length; i++) {
-        // if the current member has a party field matching a party field in the checkboxValueArray
         if (allMembers[i].party.includes(partyIndicator)) {
             var member = allMembers[i];
             matchedPartyMembers.push(member);
@@ -4891,6 +4897,20 @@ function getMembersForParty(partyIndicator) {
     console.log(matchedPartyMembers);
     
     return matchedPartyMembers;
+}
+
+function getMembersForASingleState(stateIndicator, preFilteredMembers) {
+    
+    var matchedMembersFromState = [];
+    
+    for (var i = 0; i < preFilteredMembers.length; i++) {
+        if (preFilteredMembers[i].state.includes(stateIndicator)) {
+            var member = preFilteredMembers[i];
+            matchedMembersFromState.push(member);
+        }
+    }
+        
+    return matchedMembersFromState;
 }
 
 function createCell(text, row) {
