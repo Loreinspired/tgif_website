@@ -4849,7 +4849,6 @@ function applyPartyandStateFilters() {
     
     var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
     var selectedState = document.getElementById('state-filter').value;
-    console.log(selectedState);
 
     var membersToDisplay = [];
     
@@ -4893,9 +4892,7 @@ function getMembersForASingleParty(partyIndicator) {
             matchedPartyMembers.push(member);
         }
     }
-    
-    console.log(matchedPartyMembers);
-    
+        
     return matchedPartyMembers;
 }
 

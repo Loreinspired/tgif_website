@@ -20715,16 +20715,81 @@ var data = {
    ]
 }
 
+function applyPartyandStateFilters() {
+    
+    var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
+    var selectedState = document.getElementById('state-filter').value;
+
+    var membersToDisplay = [];
+    
+    if (selectedParties.length === 0) {
+        membersToDisplay = data.results[0].members;
+    } else {
+        membersToDisplay = getMembersFromMultipleSelectedParties(selectedParties);
+    }
+    
+    if (selectedState != "") {
+        membersToDisplay = getMembersForASingleState(selectedState, membersToDisplay);
+    }
+
+    clearTableBody();
+    
+    var tbl = document.getElementById('house-data');
+    addMembersToTable(membersToDisplay, tbl);
+}
+
+function getMembersFromMultipleSelectedParties(selectedParties) {
+    
+    var membersFromSelectedParties = [];
+
+    for (var i = 0; i < selectedParties.length; i++) {
+        var selectedParty = selectedParties[i].value;
+        var partyMembers = getMembersForASingleParty(selectedParty);
+        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
+    }
+    
+    return membersFromSelectedParties;
+}
+
+function getMembersForASingleParty(partyIndicator) {
+    
+    var allMembers = data.results[0].members;
+    var matchedPartyMembers = [];
+
+    for (var i = 0; i < allMembers.length; i++) {
+        if (allMembers[i].party.includes(partyIndicator)) {
+            var member = allMembers[i];
+            matchedPartyMembers.push(member);
+        }
+    }
+        
+    return matchedPartyMembers;
+}
+
+function getMembersForASingleState(stateIndicator, preFilteredMembers) {
+    
+    var matchedMembersFromState = [];
+    
+    for (var i = 0; i < preFilteredMembers.length; i++) {
+        if (preFilteredMembers[i].state.includes(stateIndicator)) {
+            var member = preFilteredMembers[i];
+            matchedMembersFromState.push(member);
+        }
+    }
+        
+    return matchedMembersFromState;
+}
+
 function createCell(text, row) {
 
     var cell = document.createElement('td');
     var cellText = document.createTextNode(text);
     cell.appendChild(cellText);
-    row.appendChild(cell); 
+    row.appendChild(cell);
 }
 
 function createHeader(headerTitles, tbl) {
-    
+
     var tblHeader = document.getElementById('house-table-head');
     var headerRow = document.createElement('tr');
 
@@ -20733,36 +20798,39 @@ function createHeader(headerTitles, tbl) {
         newTitle.innerHTML = headerTitles[j];
         headerRow.appendChild(newTitle);
     }
-    
+
     // add header row to table header
     tblHeader.appendChild(headerRow);
 
     // put the header in the table
     tbl.appendChild(tblHeader);
-} 
+}
 
-function addMembersTable() {
-    
+function initializeMembersTable() {
+
     var headerTitles = ['Name', 'Party', 'State', 'Years in Office', '% Votes w/ Party'];
-
-    // creates a table element and a tbody element
     var tbl = document.getElementById('house-data');
-    var tblBody = document.getElementById('house-table-body');
-   
+
     createHeader(headerTitles, tbl);
+
+    addMembersToTable(data.results[0].members, tbl);
+}
+
+function addMembersToTable(members, tbl) {
+    
+    var tblBody = document.getElementById('house-table-body');
     
     // for each member, build a TR element
-    for (var i = 0; i < data.results[0].members.length; i++) {
+    for (var i = 0; i < members.length; i++) {
         var row = tbl.insertRow();
-        var congressMember = data.results[0].members[i];
 
-        var fullName = data.results[0].members[i].first_name + ' ' + (data.results[0].members[i].middle_name || "") + ' ' + data.results[0].members[i].last_name;
-        
+        var fullName = members[i].first_name + ' ' + (members[i].middle_name || "") + ' ' + members[i].last_name;
+
         createCell(fullName, row);
-        createCell(data.results[0].members[i].party || "", row);
-        createCell(data.results[0].members[i].state || "", row);
-        createCell(data.results[0].members[i].seniority || "", row);
-        createCell(data.results[0].members[i].votes_with_party_pct + ' %' || "", row);
+        createCell(members[i].party || "", row);
+        createCell(members[i].state || "", row);
+        createCell(members[i].seniority || "", row);
+        createCell(members[i].votes_with_party_pct + ' %' || "", row);
 
         // add the row to the end of the table body
         tblBody.appendChild(row);
@@ -20772,7 +20840,11 @@ function addMembersTable() {
     tbl.appendChild(tblBody);
 }
 
-addMembersTable();
+function clearTableBody() {
+    document.getElementById('house-table-body').innerHTML = "";
+}
+
+initializeMembersTable();
 
 
 
