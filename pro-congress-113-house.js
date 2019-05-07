@@ -1,4 +1,4 @@
-var data = {
+var houseData = {
    "status":"OK",
    "copyright":" Copyright (c) 2019 Pro Publica Inc. All Rights Reserved.",
    "results":[
@@ -20715,136 +20715,136 @@ var data = {
    ]
 }
 
-function applyPartyandStateFilters() {
-    
-    var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
-    var selectedState = document.getElementById('state-filter').value;
-
-    var membersToDisplay = [];
-    
-    if (selectedParties.length === 0) {
-        membersToDisplay = data.results[0].members;
-    } else {
-        membersToDisplay = getMembersFromMultipleSelectedParties(selectedParties);
-    }
-    
-    if (selectedState != "") {
-        membersToDisplay = getMembersForASingleState(selectedState, membersToDisplay);
-    }
-
-    clearTableBody();
-    
-    var tbl = document.getElementById('house-data');
-    addMembersToTable(membersToDisplay, tbl);
-}
-
-function getMembersFromMultipleSelectedParties(selectedParties) {
-    
-    var membersFromSelectedParties = [];
-
-    for (var i = 0; i < selectedParties.length; i++) {
-        var selectedParty = selectedParties[i].value;
-        var partyMembers = getMembersForASingleParty(selectedParty);
-        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
-    }
-    
-    return membersFromSelectedParties;
-}
-
-function getMembersForASingleParty(partyIndicator) {
-    
-    var allMembers = data.results[0].members;
-    var matchedPartyMembers = [];
-
-    for (var i = 0; i < allMembers.length; i++) {
-        if (allMembers[i].party.includes(partyIndicator)) {
-            var member = allMembers[i];
-            matchedPartyMembers.push(member);
-        }
-    }
-        
-    return matchedPartyMembers;
-}
-
-function getMembersForASingleState(stateIndicator, preFilteredMembers) {
-    
-    var matchedMembersFromState = [];
-    
-    for (var i = 0; i < preFilteredMembers.length; i++) {
-        if (preFilteredMembers[i].state.includes(stateIndicator)) {
-            var member = preFilteredMembers[i];
-            matchedMembersFromState.push(member);
-        }
-    }
-        
-    return matchedMembersFromState;
-}
-
-function createCell(text, row) {
-
-    var cell = document.createElement('td');
-    var cellText = document.createTextNode(text);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
-}
-
-function createHeader(headerTitles, tbl) {
-
-    var tblHeader = document.getElementById('house-table-head');
-    var headerRow = document.createElement('tr');
-
-    for (var j = 0; j < headerTitles.length; j++) {
-        var newTitle = document.createElement('th');
-        newTitle.innerHTML = headerTitles[j];
-        headerRow.appendChild(newTitle);
-    }
-
-    // add header row to table header
-    tblHeader.appendChild(headerRow);
-
-    // put the header in the table
-    tbl.appendChild(tblHeader);
-}
-
-function initializeMembersTable() {
-
-    var headerTitles = ['Name', 'Party', 'State', 'Years in Office', '% Votes w/ Party'];
-    var tbl = document.getElementById('house-data');
-
-    createHeader(headerTitles, tbl);
-
-    addMembersToTable(data.results[0].members, tbl);
-}
-
-function addMembersToTable(members, tbl) {
-    
-    var tblBody = document.getElementById('house-table-body');
-    
-    // for each member, build a TR element
-    for (var i = 0; i < members.length; i++) {
-        var row = tbl.insertRow();
-
-        var fullName = members[i].first_name + ' ' + (members[i].middle_name || "") + ' ' + members[i].last_name;
-
-        createCell(fullName, row);
-        createCell(members[i].party || "", row);
-        createCell(members[i].state || "", row);
-        createCell(members[i].seniority || "", row);
-        createCell(members[i].votes_with_party_pct + ' %' || "", row);
-
-        // add the row to the end of the table body
-        tblBody.appendChild(row);
-    }
-
-    // put the tbody in the table
-    tbl.appendChild(tblBody);
-}
-
-function clearTableBody() {
-    document.getElementById('house-table-body').innerHTML = "";
-}
-
-initializeMembersTable();
+//function applyPartyandStateFilters() {
+//    
+//    var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
+//    var selectedState = document.getElementById('state-filter').value;
+//
+//    var membersToDisplay = [];
+//    
+//    if (selectedParties.length === 0) {
+//        membersToDisplay = data.results[0].members;
+//    } else {
+//        membersToDisplay = getMembersFromMultipleSelectedParties(selectedParties);
+//    }
+//    
+//    if (selectedState != "") {
+//        membersToDisplay = getMembersForASingleState(selectedState, membersToDisplay);
+//    }
+//
+//    clearTableBody();
+//    
+//    var tbl = document.getElementById('house-data');
+//    addMembersToTable(membersToDisplay, tbl);
+//}
+//
+//function getMembersFromMultipleSelectedParties(selectedParties) {
+//    
+//    var membersFromSelectedParties = [];
+//
+//    for (var i = 0; i < selectedParties.length; i++) {
+//        var selectedParty = selectedParties[i].value;
+//        var partyMembers = getMembersForASingleParty(selectedParty);
+//        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
+//    }
+//    
+//    return membersFromSelectedParties;
+//}
+//
+//function getMembersForASingleParty(partyIndicator) {
+//    
+//    var allMembers = data.results[0].members;
+//    var matchedPartyMembers = [];
+//
+//    for (var i = 0; i < allMembers.length; i++) {
+//        if (allMembers[i].party.includes(partyIndicator)) {
+//            var member = allMembers[i];
+//            matchedPartyMembers.push(member);
+//        }
+//    }
+//        
+//    return matchedPartyMembers;
+//}
+//
+//function getMembersForASingleState(stateIndicator, preFilteredMembers) {
+//    
+//    var matchedMembersFromState = [];
+//    
+//    for (var i = 0; i < preFilteredMembers.length; i++) {
+//        if (preFilteredMembers[i].state.includes(stateIndicator)) {
+//            var member = preFilteredMembers[i];
+//            matchedMembersFromState.push(member);
+//        }
+//    }
+//        
+//    return matchedMembersFromState;
+//}
+//
+//function createCell(text, row) {
+//
+//    var cell = document.createElement('td');
+//    var cellText = document.createTextNode(text);
+//    cell.appendChild(cellText);
+//    row.appendChild(cell);
+//}
+//
+//function createHeader(headerTitles, tbl) {
+//
+//    var tblHeader = document.getElementById('house-table-head');
+//    var headerRow = document.createElement('tr');
+//
+//    for (var j = 0; j < headerTitles.length; j++) {
+//        var newTitle = document.createElement('th');
+//        newTitle.innerHTML = headerTitles[j];
+//        headerRow.appendChild(newTitle);
+//    }
+//
+//    // add header row to table header
+//    tblHeader.appendChild(headerRow);
+//
+//    // put the header in the table
+//    tbl.appendChild(tblHeader);
+//}
+//
+//function initializeMembersTable() {
+//
+//    var headerTitles = ['Name', 'Party', 'State', 'Years in Office', '% Votes w/ Party'];
+//    var tbl = document.getElementById('house-data');
+//
+//    createHeader(headerTitles, tbl);
+//
+//    addMembersToTable(data.results[0].members, tbl);
+//}
+//
+//function addMembersToTable(members, tbl) {
+//    
+//    var tblBody = document.getElementById('house-table-body');
+//    
+//    // for each member, build a TR element
+//    for (var i = 0; i < members.length; i++) {
+//        var row = tbl.insertRow();
+//
+//        var fullName = members[i].first_name + ' ' + (members[i].middle_name || "") + ' ' + members[i].last_name;
+//
+//        createCell(fullName, row);
+//        createCell(members[i].party || "", row);
+//        createCell(members[i].state || "", row);
+//        createCell(members[i].seniority || "", row);
+//        createCell(members[i].votes_with_party_pct + ' %' || "", row);
+//
+//        // add the row to the end of the table body
+//        tblBody.appendChild(row);
+//    }
+//
+//    // put the tbody in the table
+//    tbl.appendChild(tblBody);
+//}
+//
+//function clearTableBody() {
+//    document.getElementById('house-table-body').innerHTML = "";
+//}
+//
+//initializeMembersTable();
 
 
 
