@@ -22,18 +22,18 @@ function applyPartyandStateFilters(politicalData) {
     addMembersToTable(membersToDisplay, tbl);
 }
 
-function getMembersFromMultipleSelectedParties(members, selectedParties) {
-    
-    var membersFromSelectedParties = [];
-
-    for (var i = 0; i < selectedParties.length; i++) {
-        var selectedParty = selectedParties[i].value;
-        var partyMembers = getMembersForASingleParty(members, selectedParty);
-        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
-    }
-    
-    return membersFromSelectedParties;
-}
+//function getMembersFromMultipleSelectedParties(members, selectedParties) {
+//    
+//    var membersFromSelectedParties = [];
+//
+//    for (var i = 0; i < selectedParties.length; i++) {
+//        var selectedParty = selectedParties[i].value;
+//        var partyMembers = getMembersForASingleParty(members, selectedParty);
+//        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
+//    }
+//    
+//    return membersFromSelectedParties;
+//}
 
 function getMembersForASingleParty(members, partyIndicator) {
     
@@ -195,6 +195,32 @@ function showTableWithRelevantData() {
         getStateDropdown(houseData);
     }
     
+}
+
+function sortTable() {
+    
+    var rows, switching, shouldSwitch, i, x, y;
+    var table = document.getElementById("table-data");
+    
+    switching = true;
+    
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        
+        for (i = 1; i < rows.length - 1; i++) {
+            x = rows[i].getElementsByTagName('a')[0];
+            y = rows[i + 1].getElementsByTagName('a')[0];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }   
 }
 
 showTableWithRelevantData();

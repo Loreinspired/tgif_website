@@ -12,7 +12,7 @@ h2 {
 }
 
 .table {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .footer {
@@ -25,12 +25,8 @@ h2 {
     text-align: center;
 }
 
-#senate-table-body {
-    text-align: center;
-}
-
-#senate-table-head {
-    text-align: center;
+.senator-intro {
+    margin-bottom: 50px;
 }
 
 #email-link {
@@ -61,6 +57,24 @@ h2 {
     margin-right: 5px;
     width: 20px;
     height: 15px;
+}
+
+.checkbox-inline {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+td {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+#state-label {
+    margin-right: 5px;
+    margin-left: 50px;
 }
 
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>Senate</title>
-    
+
 </head>
 
 <body>
@@ -56,40 +56,47 @@
             <h2>Senators</h2>
             <p class="senator-intro">First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
         </div>
-        <div>
-            <p>Filter by party:</p>
-            <div>
-              <input type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyandStateFilters(senateData)">
-              <label for="democrat">Democrat</label>
+        <div class="row">
+            <div class="col-md-auto">
+                <form>
+                    <label>
+                        Filter by party:
+                    </label>
+                    <label for="democrat">
+                        <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyandStateFilters(senateData)">Democrat
+                    </label>
+                    <label for="republican">
+                        <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyandStateFilters(senateData)">Republican
+                    </label>
+                    <label for="independent">
+                        <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyandStateFilters(senateData)">Independent
+                    </label>
+                </form>
             </div>
+
             <div>
-              <input type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyandStateFilters(senateData)">
-              <label for="republican">Republican</label>
             </div>
-            <div>
-              <input type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyandStateFilters(senateData)">
-              <label for="independent">Independent</label>
+            <div class="col-md-auto">
+                <form name="filter" id="filter-form">
+                    <label id="state-label">Filter by state:
+                        <select id="state-filter" class="filter" onchange="applyPartyandStateFilters(senateData)">
+                        </select>
+                    </label>
+                </form>
             </div>
         </div>
-        <div>
-            <form name="filter" id="filter-form">
-                <div>
-                    <p>Filter by state:</p>
-                </div>
-                <select id="state-filter" class="filter" onchange="applyPartyandStateFilters(senateData)">
-                </select> 
-            </form>
-        </div>
+        <p>Click to sort table alphabetically, by name:</p>
+        <p><button onclick="sortTable()">Sort</button></p>
         <table class="table table-striped" id="table-data">
             <thead id="table-head" class="thead-dark"></thead>
-            <tbody id="table-body" ></tbody>
+            <tbody id="table-body"></tbody>
         </table>
     </div>
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">&#9400; 2019 TGIF | All Rights Reserved</span>
-            </div>
-        </footer>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&#9400; 2019 TGIF | All Rights Reserved</span>
+        </div>
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
