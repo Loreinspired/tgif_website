@@ -1,4 +1,4 @@
-function applyPartyandStateFilters(politicalData) {
+function applyPartyAndStateFilters(politicalData) {
     
     var selectedParties = document.querySelectorAll('input[name=checkboxes]:checked');
     var selectedState = document.getElementById('state-filter').value;
@@ -22,22 +22,21 @@ function applyPartyandStateFilters(politicalData) {
     addMembersToTable(membersToDisplay, tbl);
 }
 
-//function getMembersFromMultipleSelectedParties(members, selectedParties) {
-//    
-//    var membersFromSelectedParties = [];
-//
-//    for (var i = 0; i < selectedParties.length; i++) {
-//        var selectedParty = selectedParties[i].value;
-//        var partyMembers = getMembersForASingleParty(members, selectedParty);
-//        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
-//    }
-//    
-//    return membersFromSelectedParties;
-//}
+function getMembersFromMultipleSelectedParties(members, selectedParties) {
+    
+    var membersFromSelectedParties = [];
+
+    for (var i = 0; i < selectedParties.length; i++) {
+        var selectedParty = selectedParties[i].value;
+        var partyMembers = getMembersForASingleParty(members, selectedParty);
+        Array.prototype.push.apply(membersFromSelectedParties, partyMembers);
+    }
+    
+    return membersFromSelectedParties;
+}
 
 function getMembersForASingleParty(members, partyIndicator) {
     
-//    var allMembers = anObject.results[0].members;
     var matchedPartyMembers = [];
 
     for (var i = 0; i < members.length; i++) {
@@ -170,7 +169,6 @@ function getStateDropdown(anObject) {
         }
     }
     
-    // sort states alphabetically
     stateList.sort();
     
     // then create filter option for each state
@@ -224,10 +222,6 @@ function sortTable() {
 }
 
 showTableWithRelevantData();
-
-
-//console.log(document.title);
-
 
 
 

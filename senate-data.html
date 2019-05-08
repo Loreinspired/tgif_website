@@ -63,13 +63,13 @@
                         Filter by party:
                     </label>
                     <label for="democrat">
-                        <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyandStateFilters(senateData)">Democrat
+                        <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyAndStateFilters(senateData)">Democrat
                     </label>
                     <label for="republican">
-                        <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyandStateFilters(senateData)">Republican
+                        <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyAndStateFilters(senateData)">Republican
                     </label>
                     <label for="independent">
-                        <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyandStateFilters(senateData)">Independent
+                        <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyAndStateFilters(senateData)">Independent
                     </label>
                 </form>
             </div>
@@ -79,14 +79,15 @@
             <div class="col-md-auto">
                 <form name="filter" id="filter-form">
                     <label id="state-label">Filter by state:
-                        <select id="state-filter" class="filter" onchange="applyPartyandStateFilters(senateData)">
+                        <select id="state-filter" class="filter" onchange="applyPartyAndStateFilters(senateData)">
                         </select>
                     </label>
                 </form>
             </div>
         </div>
-        <p>Click to sort table alphabetically, by name:</p>
-        <p><button onclick="sortTable()">Sort</button></p>
+        <p>
+            <button onclick="sortTable()">Sort alphabetically by name</button>
+        </p>
         <table class="table table-striped" id="table-data">
             <thead id="table-head" class="thead-dark"></thead>
             <tbody id="table-body"></tbody>
