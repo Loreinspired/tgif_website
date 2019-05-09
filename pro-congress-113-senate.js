@@ -1,3 +1,6 @@
+//                    "missed_votes_pct": 1.52,
+
+
 var senateData = {
     "status": "OK",
     "copyright": " Copyright (c) 2019 Pro Publica Inc. All Rights Reserved.",
@@ -99,7 +102,7 @@ var senateData = {
                     "senate_class": "3",
                     "state_rank": "",
                     "lis_id": "S340",
-                    "missed_votes_pct": 1.52,
+                    "missed_votes_pct": 0,
                     "votes_with_party_pct": 81.45
                },
                 {

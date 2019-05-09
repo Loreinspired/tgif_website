@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
 
 </head>
 
@@ -170,5 +171,25 @@
     </div>
     <script src="pro-congress-113-senate.js"></script>
     <script src="./js/statistics.js"></script>
+    <script>
+        console.log(JSON.stringify(statistics.democrats.total_democrats));
+        console.log(JSON.stringify(statistics.republicans.total_republicans));
+        console.log(JSON.stringify(statistics.independents.total_independents));
 
-</body></html>
+        console.log(JSON.stringify(statistics.democrats.voting_with_party_percentage));
+        console.log(JSON.stringify(statistics.republicans.voting_with_party_percentage));
+        console.log(JSON.stringify(statistics.independents.voting_with_party_percentage));
+
+        console.log(JSON.stringify(statistics.democrats.least_engaged));
+        console.log(JSON.stringify(statistics.republicans.least_engaged));
+        console.log(JSON.stringify(statistics.independents.least_engaged));
+        
+        console.log(JSON.stringify(statistics.democrats.most_engaged));
+        console.log(JSON.stringify(statistics.republicans.most_engaged));
+        console.log(JSON.stringify(statistics.independents.most_engaged));
+
+    </script>
+
+</body>
+
+</html>
