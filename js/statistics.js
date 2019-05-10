@@ -1,4 +1,6 @@
 statistics = {
+    "most_loyal": [],
+    "least_loyal": [],
     "least_engaged": [],
     "most_engaged": [],
     "parties":
@@ -51,11 +53,11 @@ statistics.least_engaged = leastEngagedMembers;
 var mostEngagedMembers = findMostEngagedMembersAllParties(senateData);
 statistics.most_engaged = mostEngagedMembers;
 
-//var leastLoyalMembers = findLeastLoyalMembersAllParties(senateData);
-//statistics.party.all_parties.least_loyal = leastLoyalMembers;
-//
-//var mostLoyalMembers = findMostLoyalMembersAllParties(senateData);
-//statistics.party.all_parties.most_loyal = mostLoyalMembers;
+var leastLoyalMembers = findLeastLoyalMembersAllParties(senateData);
+statistics.least_loyal = leastLoyalMembers;
+
+var mostLoyalMembers = findMostLoyalMembersAllParties(senateData);
+statistics.most_loyal = mostLoyalMembers;
 
 function getPartyMemberList(politicalData, partyIndicator) {
 
@@ -354,8 +356,6 @@ function senateAtAGlanceTable(storedData) {
     table.appendChild(tableBody);
 }
 
-senateAtAGlanceTable(statistics);
-
 function leastEngagedTable(storedData) {
     
     var table = document.getElementById('least_engaged_table');
@@ -388,8 +388,6 @@ function leastEngagedTable(storedData) {
 
     table.appendChild(tableBody);
 }
-
-leastEngagedTable(statistics);
 
 function mostEngagedTable(storedData) {
     
@@ -424,7 +422,91 @@ function mostEngagedTable(storedData) {
     table.appendChild(tableBody);
 }
 
-mostEngagedTable(statistics);
+function leastLoyalTable(storedData) {
+    
+    var table = document.getElementById('least_loyal_table');
+    var headerTitles = ['Name', 'No. Party Votes', '% Party Votes'];
+    
+    var tableBody = document.createElement('tbody');
+    
+    createHeader(headerTitles, table);
+    
+    var values = Object.values(statistics.least_loyal);
+    console.log(values);
+    
+    for (var i = 0; i < values.length; i++) {
+        var row = document.createElement('tr');
+        
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = values[i].first_name + ' ' + (values[i].middle_name || "") + ' ' + values[i].last_name;
+        row.appendChild(nameCell);
+
+        var numberPartyVotes = document.createElement('td');
+        numberPartyVotes.innerHTML = values[i].total_votes;
+        row.appendChild(numberPartyVotes);
+    
+        var percentagePartyVotesCell = document.createElement('td');
+        percentagePartyVotesCell.innerHTML = values[i].votes_with_party_pct;
+        row.appendChild(percentagePartyVotesCell);
+
+        tableBody.appendChild(row);
+    }
+
+    table.appendChild(tableBody);
+}
+
+function mostLoyalTable(storedData) {
+    
+    var table = document.getElementById('most_loyal_table');
+    var headerTitles = ['Name', 'No. Party Votes', '% Party Votes'];
+    
+    var tableBody = document.createElement('tbody');
+    
+    createHeader(headerTitles, table);
+    
+    var values = Object.values(statistics.most_loyal);
+    console.log(values);
+    
+    for (var i = 0; i < values.length; i++) {
+        var row = document.createElement('tr');
+        
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = values[i].first_name + ' ' + (values[i].middle_name || "") + ' ' + values[i].last_name;
+        row.appendChild(nameCell);
+
+        var numberPartyVotes = document.createElement('td');
+        numberPartyVotes.innerHTML = values[i].total_votes;
+        row.appendChild(numberPartyVotes);
+    
+        var percentagePartyVotesCell = document.createElement('td');
+        percentagePartyVotesCell.innerHTML = values[i].votes_with_party_pct;
+        row.appendChild(percentagePartyVotesCell);
+
+        tableBody.appendChild(row);
+    }
+
+    table.appendChild(tableBody);
+}
+
+function showTableWithRelevantData() {
+    
+    if (document.title === "Senate Attendance") {
+        console.log('use senate attendance data');
+        senateAtAGlanceTable(statistics);
+        leastEngagedTable(statistics);
+        mostEngagedTable(statistics);
+    } 
+    
+    if (document.title === "Senate Party Loyalty") {
+        console.log('use party loyalty data');
+        senateAtAGlanceTable(statistics);
+        leastLoyalTable(statistics);
+        mostLoyalTable(statistics);
+    }
+    
+}
+
+showTableWithRelevantData();
 
 
 

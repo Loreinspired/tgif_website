@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-
+    <title>Senate Party Loyalty</title>
 </head>
 
 <body>
@@ -54,142 +54,21 @@
         <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
 
         <h2>Senate at a glance</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Party</th>
-                    <th>Number of Reps</th>
-                    <th>% Voted with Prty</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Republican</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>Democrat</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>Independent</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-            </tbody>
+        <table class="table table-striped" id="senate_at_a_glance">
         </table>
 
         <h2>Least Loyal (Bottom 10% of Party)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Number Party Votes</th>
-                    <th>% Party Votes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-            </tbody>
+        <table class="table table-striped" id="least_loyal_table">
         </table>
 
         <h2>Most Loyal (Top 10% of Party)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Number Party Votes</th>
-                    <th>% Party Votes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-            </tbody>
+        <table class="table table-striped" id="most_loyal_table">
         </table>
 
     </div>
 
     <script src="pro-congress-113-senate.js"></script>
     <script src="./js/statistics.js"></script>
-
-    <script>
-//        console.log(JSON.stringify(statistics.democrats.total_democrats));
-//        console.log(JSON.stringify(statistics.republicans.total_republicans));
-//        console.log(JSON.stringify(statistics.independents.total_independents));
-//
-//        console.log(JSON.stringify(statistics.democrats.voting_with_party_percentage));
-//        console.log(JSON.stringify(statistics.republicans.voting_with_party_percentage));
-//        console.log(JSON.stringify(statistics.independents.voting_with_party_percentage));
-//        
-//        console.log(JSON.stringify(statistics.party.all_parties.least_loyal));
-//        console.log(JSON.stringify(statistics.party.all_parties.most_loyal));
-
-    </script>
 
 </body>
 
