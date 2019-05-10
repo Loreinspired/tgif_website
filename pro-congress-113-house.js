@@ -52,8 +52,8 @@ var houseData = {
                  "state": "NC",
                  "district": "12",
                  "at_large": false,
-                 "geoid": "3712"
-                 ,"missed_votes_pct": 4.17,
+                 "geoid": "3712",
+                 "missed_votes_pct": 4.17,
                  "votes_with_party_pct": 97.83
                },
                            {
