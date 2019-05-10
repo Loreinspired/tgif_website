@@ -48,11 +48,9 @@ statistics.parties[3].votes_percentage = parseFloat(Math.round(averagePercentage
 var leastEngagedMembers = findLeastEngagedMembersAllParties(senateData);
 statistics.least_engaged = leastEngagedMembers;
 
-console.log(statistics.least_engaged);
-//
-//var mostEngagedMembers = findMostEngagedMembersAllParties(senateData);
-//statistics.all_parties.most_engaged = mostEngagedMembers;
-//
+var mostEngagedMembers = findMostEngagedMembersAllParties(senateData);
+statistics.most_engaged = mostEngagedMembers;
+
 //var leastLoyalMembers = findLeastLoyalMembersAllParties(senateData);
 //statistics.party.all_parties.least_loyal = leastLoyalMembers;
 //
@@ -391,11 +389,42 @@ function leastEngagedTable(storedData) {
     table.appendChild(tableBody);
 }
 
-var values = Object.values(statistics.least_engaged);
-console.log(values[0].first_name);
-console.log(values[0].missed_votes);
-
 leastEngagedTable(statistics);
+
+function mostEngagedTable(storedData) {
+    
+    var table = document.getElementById('most_engaged_table');
+    var headerTitles = ['Name', 'No. of Missed Votes', '% Missed'];
+    
+    var tableBody = document.createElement('tbody');
+    
+    createHeader(headerTitles, table);
+    
+    var values = Object.values(statistics.most_engaged);
+    console.log(values);
+    
+    for (var i = 0; i < values.length; i++) {
+        var row = document.createElement('tr');
+        
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = values[i].first_name + ' ' + (values[i].middle_name || "") + ' ' + values[i].last_name;
+        row.appendChild(nameCell);
+
+        var numberMissedVotes = document.createElement('td');
+        numberMissedVotes.innerHTML = values[i].missed_votes;
+        row.appendChild(numberMissedVotes);
+    
+        var missedPercentageCell = document.createElement('td');
+        missedPercentageCell.innerHTML = values[i].missed_votes_pct;
+        row.appendChild(missedPercentageCell);
+
+        tableBody.appendChild(row);
+    }
+
+    table.appendChild(tableBody);
+}
+
+mostEngagedTable(statistics);
 
 
 
