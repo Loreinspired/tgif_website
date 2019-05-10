@@ -1,4 +1,6 @@
 statistics = {
+    "least_engaged": [],
+    "most_engaged": [],
     "parties":
         [
             {   "title": "Democrats",
@@ -43,8 +45,10 @@ statistics.parties[2].votes_percentage = parseFloat(Math.round(percentageIndepen
 var averagePercentage = (percentageDemocrats + percentageRepublicans + percentageIndependents) / 3;
 statistics.parties[3].votes_percentage = parseFloat(Math.round(averagePercentage * 100) / 100).toFixed(2);
 
-//var leastEngagedMembers = findLeastEngagedMembersAllParties(senateData);
-//statistics.all_parties.least_engaged = leastEngagedMembers;
+var leastEngagedMembers = findLeastEngagedMembersAllParties(senateData);
+statistics.least_engaged = leastEngagedMembers;
+
+console.log(statistics.least_engaged);
 //
 //var mostEngagedMembers = findMostEngagedMembersAllParties(senateData);
 //statistics.all_parties.most_engaged = mostEngagedMembers;
@@ -304,12 +308,16 @@ function findMostEngagedMembersAllParties(politicalData) {
 
 function createHeader(headerTitles, table) {
 
-    var headerRow = document.createElement('tr');
+    var headerRow = document.createElement('thead');
+    
+    var newRow = headerRow.insertRow(-1);
+
+//    var headerRow = document.createElement('tr');
 
     headerTitles.forEach(function (header) {
         var newTitle = document.createElement('th');
         newTitle.innerHTML = header;
-        headerRow.appendChild(newTitle);
+        newRow.appendChild(newTitle);
     });
     
     table.appendChild(headerRow);
@@ -342,7 +350,6 @@ function senateAtAGlanceTable(storedData) {
         percentageCell.innerHTML = values[i].votes_percentage;
         row.appendChild(percentageCell);
 
-        
         tableBody.appendChild(row);
     }
 
@@ -350,6 +357,46 @@ function senateAtAGlanceTable(storedData) {
 }
 
 senateAtAGlanceTable(statistics);
+
+function leastEngagedTable(storedData) {
+    
+    var table = document.getElementById('least_engaged_table');
+    var headerTitles = ['Name', 'No. of Missed Votes', '% Missed'];
+    
+    var tableBody = document.createElement('tbody');
+    
+    createHeader(headerTitles, table);
+    
+    var values = Object.values(statistics.least_engaged);
+    console.log(values);
+    
+    for (var i = 0; i < values.length; i++) {
+        var row = document.createElement('tr');
+        
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = values[i].first_name + ' ' + (values[i].middle_name || "") + ' ' + values[i].last_name;
+        row.appendChild(nameCell);
+
+        var numberMissedVotes = document.createElement('td');
+        numberMissedVotes.innerHTML = values[i].missed_votes;
+        row.appendChild(numberMissedVotes);
+    
+        var missedPercentageCell = document.createElement('td');
+        missedPercentageCell.innerHTML = values[i].missed_votes_pct;
+        row.appendChild(missedPercentageCell);
+
+        tableBody.appendChild(row);
+    }
+
+    table.appendChild(tableBody);
+}
+
+var values = Object.values(statistics.least_engaged);
+console.log(values[0].first_name);
+console.log(values[0].missed_votes);
+
+leastEngagedTable(statistics);
+
 
 
 
