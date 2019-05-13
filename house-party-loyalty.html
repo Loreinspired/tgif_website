@@ -2,15 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <title>Senate</title>
-
+    <title>House Party Loyalty</title>
 </head>
 
 <body>
@@ -45,7 +43,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="house-data.html">House</a>
-                        <a class="dropdown-item" href="#">Senate</a>
+                        <a class="dropdown-item" href="senate-data.html">Senate</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -62,69 +60,50 @@
                         Party Loyalty
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="house-party-loyalty.html">House</a>
+                        <a class="dropdown-item" href="#">House</a>
                         <a class="dropdown-item" href="senate-party-loyalty.html">Senate</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
+    <!--Table container-->
     <div class="container">
-        <div>
-            <h2>Senators</h2>
-            <p class="senator-intro">First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        <div class="row">
+            <div class="col">
+                <h2>Party Loyalty</h2>
+                <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+            </div>
+            <div class="col">
+                <h2>House at a glance</h2>
+                <table class="table table-striped" id="at_a_glance">
+                </table>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-auto">
-                <form>
-                    <label>
-                        Filter by party:
-                    </label>
-                    <label for="democrat">
-                        <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyAndStateFilters(senateData)">Democrat
-                    </label>
-                    <label for="republican">
-                        <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyAndStateFilters(senateData)">Republican
-                    </label>
-                    <label for="independent">
-                        <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyAndStateFilters(senateData)">Independent
-                    </label>
-                </form>
+            <div class="col">
+                <h2>Least Loyal (Bottom 10% of Party)</h2>
+                <table class="table table-striped" id="least_loyal_table">
+                </table>
             </div>
-
-            <div>
-            </div>
-            <div class="col-md-auto">
-                <form name="filter" id="filter-form">
-                    <label id="state-label">Filter by state:
-                        <select id="state-filter" class="filter" onchange="applyPartyAndStateFilters(senateData)">
-                        </select>
-                    </label>
-                </form>
+            <div class="col">
+                <h2>Most Loyal (Top 10% of Party)</h2>
+                <table class="table table-striped" id="most_loyal_table">
+                </table>
             </div>
         </div>
-        <p>
-            <button onclick="sortTable()">Sort alphabetically by name</button>
-        </p>
-        <table class="table table-striped" id="table-data">
-            <thead id="table-head" class="thead-dark"></thead>
-            <tbody id="table-body"></tbody>
-        </table>
     </div>
+
     <footer class="footer">
         <div class="container">
             <span class="text-muted">&#9400; 2019 TGIF | All Rights Reserved</span>
         </div>
     </footer>
 
-
+    <script src="pro-congress-113-house.js"></script>
+    <script src="./js/statistics.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="pro-congress-113-senate.js"></script>
-    <script src="./js/external.js"></script>
-
-</body>
-
-</html>
+</body></html>
