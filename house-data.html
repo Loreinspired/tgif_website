@@ -81,13 +81,13 @@
                     <p>Filter by party:</p>
                     <form>
                         <label for="democrat">
-                            <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D" onchange="applyPartyandStateFilters(senateData)">Democrat
+                            <input class="checkbox-inline" type="checkbox" id="democrat" name="checkboxes" value="D">Democrat
                         </label>
                         <label for="republican">
-                            <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R" onchange="applyPartyandStateFilters(senateData)">Republican
+                            <input class="checkbox-inline" type="checkbox" id="republican" name="checkboxes" value="R">Republican
                         </label>
                         <label for="independent">
-                            <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I" onchange="applyPartyandStateFilters(senateData)">Independent
+                            <input class="checkbox-inline" type="checkbox" id="independent" name="checkboxes" value="I">Independent
                         </label>
                     </form>
                 </div>
@@ -99,7 +99,7 @@
                     <div>
                         <p>Filter by state:</p>
                     </div>
-                    <select id="state-filter" class="filter" onchange="applyPartyandStateFilters(senateData)">
+                    <select id="state-filter" class="filter">
                     </select>
                 </form>
             </div>
@@ -115,12 +115,13 @@
         <span class="text-muted">&#9400; 2019 TGIF | All Rights Reserved</span>
     </div>
 </footer>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="./js/statistics.js"></script>
+<script src="./js/external.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="pro-congress-113-house.js"></script>
-<script src="./js/external.js"></script>
 
 </html>
